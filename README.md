@@ -1,22 +1,13 @@
 # Yorha Design System
 
-Inspired by Nier Automata
-
-Demo (TODO)
-
-# Quickstart
-
-```
-npm install @p0u4a/yorha
-```
-
+UI library inspired by Nier Automata
 
 # Features
+
 - 30+ components
 - Light and dark themes
 - Custom input validation styles
 - Base UI as a foundation providing accessibility out of the box
-
 
 # Disclaimer
 

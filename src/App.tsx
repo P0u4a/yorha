@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./index.css";
 import {
   Title,
   Strip,
@@ -418,14 +417,14 @@ export function App() {
           </div>
           <div className="flex-1">
             <h4 className="mb-2 text-primary">Combobox (Multi + Groups)</h4>
-              <Combobox
-                label="Loadout"
-                placeholder="Search weapons..."
-                groups={weaponGroups}
-                selectionMode="multiple"
-                value={multiComboValue}
-                onValueChange={setMultiComboValue}
-              />
+            <Combobox
+              label="Loadout"
+              placeholder="Search weapons..."
+              groups={weaponGroups}
+              selectionMode="multiple"
+              value={multiComboValue}
+              onValueChange={setMultiComboValue}
+            />
           </div>
         </div>
       </section>
@@ -580,12 +579,7 @@ export function App() {
       <section className="py-2">
         <h4 className="mb-2 text-primary">Table</h4>
         <div className="max-w-[400px]">
-          <Table
-            columns={tableColumns}
-            data={tableData}
-            activeIndex={activeRow}
-            onRowClick={(_row, i) => setActiveRow(i)}
-          />
+          <Table columns={tableColumns} data={tableData} />
         </div>
       </section>
 

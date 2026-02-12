@@ -5,7 +5,7 @@ interface ProgressProps {
   min?: number;
   max?: number;
   label?: string;
-  showValue?: boolean;
+  valueDisplay?: "always" | "never";
 }
 
 export function Progress({
@@ -13,9 +13,10 @@ export function Progress({
   min = 0,
   max = 100,
   label,
-  showValue = true,
+  valueDisplay = "always",
 }: ProgressProps) {
   const pct = value === null ? undefined : ((value - min) / (max - min)) * 100;
+  const showValue = valueDisplay === "always";
 
   return (
     <BaseProgress.Root

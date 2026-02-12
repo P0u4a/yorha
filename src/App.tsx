@@ -188,12 +188,12 @@ export function App() {
       {/* 4. Widget row */}
       <section className="py-2">
         <div className="flex flex-row gap-4 [&>*]:flex-1">
-          <Card title="Status" fill>
+          <Card title="Status" layout="fill">
             <p>9S &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lv: 33</p>
             <p>Funds (G): &nbsp;&nbsp;&nbsp; 5,763</p>
             <p>EXP: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 74,158</p>
           </Card>
-          <Card title="Item Description" dark fill>
+          <Card title="Item Description" tone="primary" layout="fill">
             <p>Melee Attack Up (S)</p>
             <Strip />
             <p className="mt-2">
@@ -418,14 +418,14 @@ export function App() {
           </div>
           <div className="flex-1">
             <h4 className="mb-2 text-primary">Combobox (Multi + Groups)</h4>
-            <Combobox
-              label="Loadout"
-              placeholder="Search weapons..."
-              groups={weaponGroups}
-              multiple
-              value={multiComboValue}
-              onValueChange={setMultiComboValue}
-            />
+              <Combobox
+                label="Loadout"
+                placeholder="Search weapons..."
+                groups={weaponGroups}
+                selectionMode="multiple"
+                value={multiComboValue}
+                onValueChange={setMultiComboValue}
+              />
           </div>
         </div>
       </section>
@@ -465,7 +465,7 @@ export function App() {
             <h4 className="mb-2 text-primary">Bar</h4>
             <div className="flex flex-row gap-4 h-[48px]">
               <Bar />
-              <Bar dark />
+              <Bar tone="primary" />
             </div>
           </div>
           <div>

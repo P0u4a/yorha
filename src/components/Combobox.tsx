@@ -21,13 +21,13 @@ type ComboboxDataProps =
   | { options?: never; groups: ComboboxGroup[] };
 
 type ComboboxSingleProps = {
-  multiple?: false;
+  selectionMode?: "single";
   value?: ComboboxOption | null;
   onValueChange?: (value: ComboboxOption | null) => void;
 };
 
 type ComboboxMultipleProps = {
-  multiple: true;
+  selectionMode: "multiple";
   value?: ComboboxOption[];
   onValueChange?: (value: ComboboxOption[]) => void;
 };
@@ -55,7 +55,9 @@ function renderItem(item: ComboboxOption) {
 }
 
 export function Combobox(props: ComboboxProps) {
-  const { placeholder = "Search...", label, multiple } = props;
+  const { placeholder = "Search...", label } = props;
+  const selectionMode = props.selectionMode ?? "single";
+  const multiple = selectionMode === "multiple";
   const groups = "groups" in props ? props.groups : undefined;
   const options = "options" in props ? props.options : undefined;
   const items = groups ?? options ?? [];

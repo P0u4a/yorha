@@ -1,30 +1,45 @@
 import { type ReactNode } from "react";
 import { cn } from "./utils";
 
+type CardTone = "muted" | "primary";
+type CardLayout = "auto" | "fill";
+
 interface CardProps {
   title?: string;
-  dark?: boolean;
-  icon?: boolean;
+  tone?: CardTone;
+  headerIcon?: ReactNode | null;
   level?: string | number;
-  fill?: boolean;
+  layout?: CardLayout;
   children?: ReactNode;
   className?: string;
 }
 
 export function Card({
   title,
-  dark = false,
-  icon = true,
+  tone = "muted",
+  headerIcon,
   level,
-  fill = false,
+  layout = "auto",
   children,
   className,
 }: CardProps) {
+  const resolvedHeaderIcon =
+    headerIcon === undefined ? (
+      <span
+        className={cn(
+          tone === "primary" ? "yorha-header-icon-light" : "yorha-header-icon",
+        )}
+      />
+    ) : (
+      headerIcon
+    );
+  const isFill = layout === "fill";
+
   return (
     <div
       className={cn(
         "flex flex-col bg-surface",
-        fill && "h-full",
+        isFill && "h-full",
         className,
       )}
     >
@@ -32,16 +47,12 @@ export function Card({
         <div
           className={cn(
             "flex items-center gap-2 py-1 px-3 font-medium text-sm tracking-[1px]",
-            dark ? "bg-primary text-surface" : "bg-muted text-primary",
+            tone === "primary"
+              ? "bg-primary text-surface"
+              : "bg-muted text-primary",
           )}
         >
-          {icon && (
-            <span
-              className={cn(
-                dark ? "yorha-header-icon-light" : "yorha-header-icon",
-              )}
-            />
-          )}
+          {resolvedHeaderIcon}
           <span className="flex-1">{title}</span>
           {level && (
             <span className="text-xs opacity-70">{level}</span>
@@ -51,7 +62,7 @@ export function Card({
       <div
         className={cn(
           "w-full p-4 text-foreground",
-          fill && "flex-1 overflow-auto",
+          isFill && "flex-1 overflow-auto",
         )}
       >
         {children}

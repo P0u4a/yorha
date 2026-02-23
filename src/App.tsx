@@ -158,7 +158,7 @@ export function App() {
 
       {/* 2. Nav row */}
       <section className="py-2">
-        <div className="flex flex-row gap-[2px]">
+        <div className="flex flex-row flex-wrap gap-[2px]">
           <NavLink text="MAP" variant="nav" href="#" />
           <NavLink text="QUESTS" variant="nav" href="#" />
           <NavLink text="ITEMS" variant="nav" href="#" active />
@@ -186,7 +186,7 @@ export function App() {
 
       {/* 4. Widget row */}
       <section className="py-2">
-        <div className="flex flex-row gap-4 [&>*]:flex-1">
+        <div className="flex flex-col sm:flex-row gap-4 [&>*]:flex-1">
           <Card title="Status" layout="fill">
             <p>9S &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lv: 33</p>
             <p>Funds (G): &nbsp;&nbsp;&nbsp; 5,763</p>
@@ -207,7 +207,7 @@ export function App() {
 
       {/* 5. TabPanel + ScrollArea row */}
       <section className="py-2">
-        <div className="flex flex-row gap-4 [&>*]:flex-1">
+        <div className="flex flex-col sm:flex-row gap-4 [&>*]:flex-1">
           <div className="h-[220px]">
             <TabPanel>
               <NavLink text="Small Recovery" href="#" />
@@ -285,7 +285,7 @@ export function App() {
 
       {/* 8. Checkbox + Select row */}
       <section className="py-2">
-        <div className="flex flex-row gap-8 items-start">
+        <div className="flex flex-col sm:flex-row gap-8 items-start">
           <div>
             <h4 className="mb-2 text-primary">Checkbox</h4>
             <div className="flex flex-col gap-2">
@@ -319,10 +319,10 @@ export function App() {
 
       {/* 9. Input + Switch row */}
       <section className="py-2">
-        <div className="flex flex-row gap-8 items-start">
+        <div className="flex flex-col sm:flex-row gap-8 items-start">
           <div>
             <h4 className="mb-2 text-primary">Input</h4>
-            <div className="flex flex-col gap-2 w-[280px]">
+            <div className="flex flex-col gap-2 w-full sm:w-[280px]">
               <Input
                 placeholder="Enter player name..."
                 value={inputValue}
@@ -336,7 +336,7 @@ export function App() {
               <h4 className="text-primary">Form</h4>
               <p className="text-primary/80">Custom validation styles</p>
             </hgroup>
-            <form className="flex flex-col gap-2 w-[280px]">
+            <form className="flex flex-col gap-2 w-full sm:w-[280px]">
               <Input placeholder="Enter email" required type="email" />
               <Button type="submit">Submit</Button>
             </form>
@@ -364,7 +364,7 @@ export function App() {
 
       {/* 10. NumberField + Slider + Progress */}
       <section className="py-2">
-        <div className="flex flex-row gap-8 items-start">
+        <div className="flex flex-col sm:flex-row gap-8 items-start">
           <div>
             <h4 className="mb-2 text-primary">Number Field</h4>
             <div className="w-[200px]">
@@ -402,7 +402,7 @@ export function App() {
 
       {/* 11. Combobox (single) + Combobox (multiselect with groups) */}
       <section className="py-2">
-        <div className="flex flex-row gap-8 items-start">
+        <div className="flex flex-col sm:flex-row gap-8 items-start">
           <div>
             <h4 className="mb-2 text-primary">Combobox</h4>
             <div className="w-[220px]">
@@ -433,7 +433,7 @@ export function App() {
 
       {/* 12. Text effects */}
       <section className="py-2">
-        <div className="flex flex-row gap-8 items-start">
+        <div className="flex flex-col sm:flex-row gap-8 items-start">
           <div>
             <h4 className="mb-2 text-primary">Typer</h4>
             <Typer
@@ -459,7 +459,7 @@ export function App() {
 
       {/* 13. Decorative primitives */}
       <section className="py-2">
-        <div className="flex flex-row gap-8 items-start">
+        <div className="flex flex-col sm:flex-row gap-8 items-start">
           <div>
             <h4 className="mb-2 text-primary">Bar</h4>
             <div className="flex flex-row gap-4 h-[48px]">
@@ -522,7 +522,7 @@ export function App() {
       {/* 16. Tooltip */}
       <section className="py-2">
         <h4 className="mb-2 text-primary">Tooltip</h4>
-        <div className="flex flex-row gap-6 items-center">
+        <div className="flex flex-row flex-wrap gap-6 items-center">
           <Tooltip label="Save your progress">
             <Button>Save</Button>
           </Tooltip>
@@ -543,7 +543,7 @@ export function App() {
       {/* 17. Card */}
       <section className="py-2">
         <h4 className="mb-2 text-primary">Card</h4>
-        <div className="flex flex-row gap-4 [&>*]:flex-1">
+        <div className="flex flex-col sm:flex-row gap-4 [&>*]:flex-1">
           <Card title="Unit Data">
             <p className="text-sm">
               These machine lifeforms evolved in the Desert Zone and engage in
@@ -588,8 +588,8 @@ export function App() {
       {/* 19. Textarea */}
       <section className="py-2">
         <h4 className="mb-2 text-primary">Textarea</h4>
-        <div className="flex flex-row gap-4 items-start">
-          <div className="w-[300px]">
+        <div className="flex flex-col sm:flex-row gap-4 items-start">
+          <div className="w-full sm:w-[300px]">
             <Textarea
               placeholder="Enter mission notes..."
               value={textareaValue}
@@ -597,7 +597,7 @@ export function App() {
               rows={4}
             />
           </div>
-          <div className="w-[300px]">
+          <div className="w-full sm:w-[300px]">
             <Textarea placeholder="Read-only log output" disabled rows={4} />
           </div>
         </div>

@@ -120,6 +120,22 @@
     pointer-events: none;
   }
 
+  .yorha-confirm-slide {
+    background-image: linear-gradient(
+      90deg,
+      var(--bg-muted) 50%,
+      var(--primary) 50%
+    );
+    background-size: 200%;
+    user-select: none;
+    touch-action: none;
+  }
+
+  .yorha-confirm-slide[data-holding] .yorha-icon-square {
+    background-position: -100%;
+    transition: background-position 2s linear;
+  }
+
   .yorha-gradient-slide-transparent {
     background-image: linear-gradient(
       90deg,

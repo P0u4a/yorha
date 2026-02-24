@@ -1,4 +1,5 @@
 import {
+  AlertDialog,
   Title,
   Strip,
   NavLink,
@@ -420,6 +421,14 @@ export function App() {
             <p>- Total Stages Cleared -</p>
             <p className="text-alert mt-2">NEW RECORD &nbsp; 0 &rarr; 14</p>
           </Dialog>
+          <AlertDialog.Root
+            title="Sell Resource"
+            description="This action will permanently remove the resource from the registry."
+            trigger={<Button>Sell</Button>}
+          >
+            <AlertDialog.Close>Cancel</AlertDialog.Close>
+            <AlertDialog.Close type="confirm">Sell</AlertDialog.Close>
+          </AlertDialog.Root>
           <ContextMenu
             items={contextItems}
             onSelect={(v) => console.log("Selected:", v)}

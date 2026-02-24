@@ -7,6 +7,7 @@ import {
   type ReactNode,
   type CSSProperties,
   useCallback,
+  type ReactElement,
 } from "react";
 import { AlertDialog as BaseAlertDialog } from "@base-ui/react/alert-dialog";
 import { Button } from "./Button";
@@ -98,7 +99,7 @@ function AlertDialogClose({ children, type }: AlertDialogCloseProps) {
 }
 
 interface AlertDialogProps {
-  trigger: ReactNode;
+  trigger: ReactElement<HTMLButtonElement>;
   title: string;
   description?: string;
   children: ReactNode;
@@ -116,9 +117,7 @@ function AlertDialogRoot({
   return (
     <CloseCtx.Provider value={handleClose}>
       <BaseAlertDialog.Root open={open} onOpenChange={setOpen}>
-        <BaseAlertDialog.Trigger render={<span className="inline-flex" />}>
-          {trigger}
-        </BaseAlertDialog.Trigger>
+        <BaseAlertDialog.Trigger className="inline-flex" render={trigger} />
         <BaseAlertDialog.Portal>
           <BaseAlertDialog.Backdrop className="fixed inset-0 bg-black/30 z-[100]" />
           <BaseAlertDialog.Popup className="fixed inset-0 z-[101] flex items-center justify-center">

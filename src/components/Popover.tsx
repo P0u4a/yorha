@@ -1,9 +1,9 @@
-import { type ReactNode } from "react";
+import type { ReactNode, ReactElement } from "react";
 import { Popover as BasePopover } from "@base-ui/react/popover";
 import { Cursor } from "./Cursor";
 
 interface PopoverProps {
-  trigger: ReactNode;
+  trigger: ReactElement<HTMLButtonElement>;
   children: ReactNode;
   title?: string;
 }
@@ -11,9 +11,7 @@ interface PopoverProps {
 export function Popover({ trigger, children, title }: PopoverProps) {
   return (
     <BasePopover.Root>
-      <BasePopover.Trigger render={<span className="inline-flex" />}>
-        {trigger}
-      </BasePopover.Trigger>
+      <BasePopover.Trigger className="inline-flex" render={trigger} />
       <BasePopover.Portal>
         <BasePopover.Positioner sideOffset={20} className="z-[300]">
           <BasePopover.Popup className="bg-surface border-2 border-muted text-primary font-yorha text-xs tracking-[1px] transition-opacity data-[starting-style]:opacity-0 data-[ending-style]:opacity-0">

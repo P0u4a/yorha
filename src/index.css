@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --bg: #d1cdb7;
@@ -353,6 +354,30 @@
     animation: glitch-after 1.5s infinite linear alternate-reverse;
   }
 
+  .glitch-img {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glitch-img::before,
+  .glitch-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--glitch-src);
+    background-size: cover;
+    background-position: center;
+    pointer-events: none;
+  }
+
+  .glitch-img::before {
+    animation: glitch-img-before 4s linear infinite;
+  }
+
+  .glitch-img::after {
+    animation: glitch-img-after 4s linear infinite;
+  }
+
   .text-shadow-yorha {
     text-shadow: 7px 5px #00000030;
   }
@@ -573,4 +598,72 @@
 @keyframes rotating {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
+}
+
+@keyframes glitch-img-before {
+  /* — hard burst (0–10%, 0–0.4s) — */
+  0%   { clip-path: inset( 5% 0% 80% 0%); transform: translateX(-4px); }
+  2%   { clip-path: inset(65% 0% 15% 0%); transform: translateX( 4px); }
+  4%   { clip-path: inset(28% 0% 54% 0%); transform: translateX(-4px); }
+  6%   { clip-path: inset(82% 0%  3% 0%); transform: translateX( 4px); }
+  8%   { clip-path: inset(44% 0% 38% 0%); transform: translateX(-4px); }
+  /* — fade to subtle — */
+  10%  { clip-path: inset(20% 0% 78% 0%); transform: translateX(-1px); }
+  /* — subtle drift (10–48%, ~1.5s) — */
+  16%  { clip-path: inset(75% 0% 23% 0%); transform: translateX( 1px); }
+  22%  { clip-path: inset(10% 0% 88% 0%); transform: translateX(-1px); }
+  28%  { clip-path: inset(55% 0% 43% 0%); transform: translateX( 1px); }
+  34%  { clip-path: inset(30% 0% 68% 0%); transform: translateX(-1px); }
+  40%  { clip-path: inset(82% 0% 16% 0%); transform: translateX( 1px); }
+  46%  { clip-path: inset(48% 0% 50% 0%); transform: translateX(-1px); }
+  /* — hard burst (50–60%, 2–2.4s) — */
+  50%  { clip-path: inset(20% 0% 62% 0%); transform: translateX(-4px); }
+  52%  { clip-path: inset(72% 0%  8% 0%); transform: translateX( 4px); }
+  54%  { clip-path: inset( 8% 0% 75% 0%); transform: translateX(-4px); }
+  56%  { clip-path: inset(55% 0% 28% 0%); transform: translateX( 4px); }
+  58%  { clip-path: inset(35% 0% 48% 0%); transform: translateX(-4px); }
+  /* — fade to subtle — */
+  60%  { clip-path: inset(48% 0% 50% 0%); transform: translateX( 1px); }
+  /* — subtle drift (60–98%, ~1.5s) — */
+  66%  { clip-path: inset(15% 0% 83% 0%); transform: translateX(-1px); }
+  72%  { clip-path: inset(62% 0% 36% 0%); transform: translateX( 1px); }
+  78%  { clip-path: inset(38% 0% 60% 0%); transform: translateX(-1px); }
+  84%  { clip-path: inset(88% 0% 10% 0%); transform: translateX( 1px); }
+  90%  { clip-path: inset(25% 0% 73% 0%); transform: translateX(-1px); }
+  96%  { clip-path: inset(60% 0% 38% 0%); transform: translateX( 1px); }
+  100% { clip-path: inset( 5% 0% 80% 0%); transform: translateX(-4px); }
+}
+
+@keyframes glitch-img-after {
+  /* — hard burst (0–10%, 0–0.4s) — */
+  0%   { clip-path: inset(50% 0% 32% 0%); transform: translateX( 4px); }
+  2%   { clip-path: inset(12% 0% 72% 0%); transform: translateX(-4px); }
+  4%   { clip-path: inset(78% 0%  8% 0%); transform: translateX( 4px); }
+  6%   { clip-path: inset(22% 0% 60% 0%); transform: translateX(-4px); }
+  8%   { clip-path: inset(58% 0% 25% 0%); transform: translateX( 4px); }
+  /* — fade to subtle — */
+  10%  { clip-path: inset(72% 0% 26% 0%); transform: translateX( 1px); }
+  /* — subtle drift (10–48%, ~1.5s) — */
+  16%  { clip-path: inset(18% 0% 80% 0%); transform: translateX(-1px); }
+  22%  { clip-path: inset(65% 0% 33% 0%); transform: translateX( 1px); }
+  28%  { clip-path: inset(40% 0% 58% 0%); transform: translateX(-1px); }
+  34%  { clip-path: inset(85% 0% 13% 0%); transform: translateX( 1px); }
+  40%  { clip-path: inset(28% 0% 70% 0%); transform: translateX(-1px); }
+  46%  { clip-path: inset(52% 0% 46% 0%); transform: translateX( 1px); }
+  /* — hard burst (50–60%, 2–2.4s) — */
+  50%  { clip-path: inset(62% 0% 20% 0%); transform: translateX( 4px); }
+  52%  { clip-path: inset( 5% 0% 78% 0%); transform: translateX(-4px); }
+  54%  { clip-path: inset(42% 0% 40% 0%); transform: translateX( 4px); }
+  56%  { clip-path: inset(15% 0% 68% 0%); transform: translateX(-4px); }
+  58%  { clip-path: inset(78% 0% 12% 0%); transform: translateX( 4px); }
+  /* — fade to subtle — */
+  60%  { clip-path: inset(35% 0% 63% 0%); transform: translateX(-1px); }
+  /* — subtle drift (60–98%, ~1.5s) — */
+  66%  { clip-path: inset(55% 0% 43% 0%); transform: translateX( 1px); }
+  72%  { clip-path: inset( 8% 0% 90% 0%); transform: translateX(-1px); }
+  78%  { clip-path: inset(70% 0% 28% 0%); transform: translateX( 1px); }
+  84%  { clip-path: inset(45% 0% 53% 0%); transform: translateX(-1px); }
+  90%  { clip-path: inset(22% 0% 76% 0%); transform: translateX( 1px); }
+  96%  { clip-path: inset(48% 0% 50% 0%); transform: translateX(-1px); }
+  100% { clip-path: inset(50% 0% 32% 0%); transform: translateX( 4px); }
 }

@@ -30,6 +30,7 @@ import {
   Textarea,
   Tooltip,
   Popover,
+  Avatar,
   useTheme,
 } from "./components";
 
@@ -269,10 +270,7 @@ export function App() {
           <div>
             <h4 className="mb-2 text-primary">Select</h4>
             <div className="w-[200px]">
-              <Select
-                options={selectOptions}
-                placeholder="Difficulty"
-              />
+              <Select options={selectOptions} placeholder="Difficulty" />
             </div>
           </div>
         </div>
@@ -317,12 +315,7 @@ export function App() {
           <div>
             <h4 className="mb-2 text-primary">Number Field</h4>
             <div className="w-[200px]">
-              <NumberField
-                label="Level"
-                defaultValue={33}
-                min={1}
-                max={99}
-              />
+              <NumberField label="Level" defaultValue={33} min={1} max={99} />
             </div>
           </div>
           <div>
@@ -423,10 +416,7 @@ export function App() {
 
       <section className="py-2">
         <div className="flex flex-col max-w-[300px] gap-4">
-          <Dialog
-            title="RESULT"
-            trigger={<Button>Open Dialog</Button>}
-          >
+          <Dialog title="RESULT" trigger={<Button>Open Dialog</Button>}>
             <p>- Total Stages Cleared -</p>
             <p className="text-alert mt-2">NEW RECORD &nbsp; 0 &rarr; 14</p>
           </Dialog>
@@ -480,15 +470,41 @@ export function App() {
       <section className="py-2">
         <h4 className="mb-2 text-primary">Popover</h4>
         <div className="flex flex-row flex-wrap gap-6 items-center">
-          <Popover
-            trigger={<Button>Edit Unit Data</Button>}
-            title="UNIT DATA"
-          >
+          <Popover trigger={<Button>Edit Unit Data</Button>} title="UNIT DATA">
             <div className="flex flex-col gap-2 min-w-[200px]">
               <Input placeholder="Designation..." />
               <Input placeholder="Serial number..." />
             </div>
           </Popover>
+        </div>
+      </section>
+
+      <Strip />
+
+      <section className="py-2">
+        <h4 className="mb-2 text-primary">Avatar</h4>
+        <div className="flex flex-row gap-4 items-end">
+          <div className="flex flex-col items-center gap-1">
+            <Avatar
+              src="https://api.dicebear.com/9.x/lorelei/svg"
+              alt="Unit 2B"
+              fallback="2B"
+            />
+            <span className="text-xs text-primary opacity-60">Image</span>
+          </div>
+          <div className="flex flex-col items-center gap-1">
+            <Avatar
+              src="https://api.dicebear.com/9.x/lorelei/svg"
+              alt="Unit 9S"
+              fallback="9S"
+              size={64}
+            />
+            <span className="text-xs text-primary opacity-60">Size 64</span>
+          </div>
+          <div className="flex flex-col items-center gap-1">
+            <Avatar fallback="A2" size={48} />
+            <span className="text-xs text-primary opacity-60">Fallback</span>
+          </div>
         </div>
       </section>
 

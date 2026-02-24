@@ -27,6 +27,7 @@ export { Card } from './Card';
 export { DropdownMenu } from './DropdownMenu';
 export { Table } from './Table';
 export { Textarea } from './Textarea';
+export { Avatar } from './Avatar';
 export { Tooltip } from './Tooltip';
 export { Popover } from './Popover';
 export { ThemeProvider, useTheme } from './ThemeContext';

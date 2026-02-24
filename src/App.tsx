@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Title,
   Strip,
@@ -30,16 +29,17 @@ import {
   Table,
   Textarea,
   Tooltip,
+  Popover,
   useTheme,
 } from "./components";
 
 const contextItems = [
-  { label: "\u65E5\u672C\u8A9E", value: "ja" },
+  { label: "日本語", value: "ja" },
   { label: "English", value: "en" },
-  { label: "Fran\u00E7ais", value: "fr" },
+  { label: "Français", value: "fr" },
   { label: "Italiano", value: "it" },
   { label: "Deutsch", value: "de" },
-  { label: "Espa\u00F1ol", value: "es" },
+  { label: "Español", value: "es" },
 ];
 
 const selectOptions = [
@@ -119,28 +119,9 @@ const weaponGroups = [
 
 export function App() {
   const { theme, toggleTheme } = useTheme();
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [standaloneCheck1, setStandaloneCheck1] = useState(false);
-  const [standaloneCheck2, setStandaloneCheck2] = useState(true);
-  const [selectValue, setSelectValue] = useState<string | null>("en");
-  const [inputValue, setInputValue] = useState("");
-  const [switchOnline, setSwitchOnline] = useState(true);
-  const [switchVibration, setSwitchVibration] = useState(false);
-  const [levelValue, setLevelValue] = useState<number | null>(33);
-  const [comboValue, setComboValue] = useState<{
-    label: string;
-    value: string;
-  } | null>(null);
-  const [multiComboValue, setMultiComboValue] = useState<
-    { label: string; value: string }[]
-  >([]);
-  const [sliderValue, setSliderValue] = useState<number>(50);
-  const [textareaValue, setTextareaValue] = useState("");
-  const [activeRow, setActiveRow] = useState<number | undefined>(0);
 
   return (
     <div className="max-w-[900px] mx-auto my-8 flex flex-col gap-4 px-4">
-      {/* Dark/Light toggle */}
       <section className="py-2 flex justify-end">
         <Switch
           label={theme === "dark" ? "Dark Mode" : "Light Mode"}
@@ -149,14 +130,12 @@ export function App() {
         />
       </section>
 
-      {/* 1. Title */}
       <section className="py-2">
         <Title title="SYSTEM" subtitle="Settings" />
       </section>
 
       <Strip />
 
-      {/* 2. Nav row */}
       <section className="py-2">
         <div className="flex flex-row flex-wrap gap-[2px]">
           <NavLink text="MAP" variant="nav" href="#" />
@@ -171,7 +150,6 @@ export function App() {
 
       <Strip />
 
-      {/* 3. Button column */}
       <section className="py-2">
         <div className="flex flex-col max-w-[300px] gap-[2px]">
           <Button>Save</Button>
@@ -184,7 +162,6 @@ export function App() {
 
       <Strip />
 
-      {/* 4. Widget row */}
       <section className="py-2">
         <div className="flex flex-col sm:flex-row gap-4 [&>*]:flex-1">
           <Card title="Status" layout="fill">
@@ -205,7 +182,6 @@ export function App() {
 
       <Strip />
 
-      {/* 5. TabPanel + ScrollArea row */}
       <section className="py-2">
         <div className="flex flex-col sm:flex-row gap-4 [&>*]:flex-1">
           <div className="h-[220px]">
@@ -233,7 +209,6 @@ export function App() {
 
       <Strip />
 
-      {/* 6. Tabs */}
       <section className="py-2">
         <Tabs
           tabs={[
@@ -274,7 +249,6 @@ export function App() {
 
       <Strip />
 
-      {/* 7. Accordion */}
       <section className="py-2">
         <Accordion title="Advanced Settings">
           <p>Hidden content revealed when the dropdown is expanded.</p>
@@ -283,22 +257,13 @@ export function App() {
 
       <Strip />
 
-      {/* 8. Checkbox + Select row */}
       <section className="py-2">
         <div className="flex flex-col sm:flex-row gap-8 items-start">
           <div>
             <h4 className="mb-2 text-primary">Checkbox</h4>
             <div className="flex flex-col gap-2">
-              <Checkbox
-                label="HUD: Display"
-                checked={standaloneCheck1}
-                onCheckedChange={setStandaloneCheck1}
-              />
-              <Checkbox
-                label="Subtitles"
-                checked={standaloneCheck2}
-                onCheckedChange={setStandaloneCheck2}
-              />
+              <Checkbox label="HUD: Display" />
+              <Checkbox label="Subtitles" defaultChecked />
             </div>
           </div>
           <div>
@@ -306,8 +271,6 @@ export function App() {
             <div className="w-[200px]">
               <Select
                 options={selectOptions}
-                value={selectValue}
-                onValueChange={setSelectValue}
                 placeholder="Difficulty"
               />
             </div>
@@ -317,17 +280,12 @@ export function App() {
 
       <Strip />
 
-      {/* 9. Input + Switch row */}
       <section className="py-2">
         <div className="flex flex-col sm:flex-row gap-8 items-start">
           <div>
             <h4 className="mb-2 text-primary">Input</h4>
             <div className="flex flex-col gap-2 w-full sm:w-[280px]">
-              <Input
-                placeholder="Enter player name..."
-                value={inputValue}
-                onValueChange={setInputValue}
-              />
+              <Input placeholder="Enter player name..." />
               <Input placeholder="Disabled input" disabled />
             </div>
           </div>
@@ -344,16 +302,8 @@ export function App() {
           <div>
             <h4 className="mb-2 text-primary">Switch</h4>
             <div className="flex flex-col gap-3">
-              <Switch
-                label="Online Mode"
-                checked={switchOnline}
-                onCheckedChange={setSwitchOnline}
-              />
-              <Switch
-                label="Vibration"
-                checked={switchVibration}
-                onCheckedChange={setSwitchVibration}
-              />
+              <Switch label="Online Mode" defaultChecked />
+              <Switch label="Vibration" />
               <Switch label="Disabled" disabled />
             </div>
           </div>
@@ -362,7 +312,6 @@ export function App() {
 
       <Strip />
 
-      {/* 10. NumberField + Slider + Progress */}
       <section className="py-2">
         <div className="flex flex-col sm:flex-row gap-8 items-start">
           <div>
@@ -370,8 +319,7 @@ export function App() {
             <div className="w-[200px]">
               <NumberField
                 label="Level"
-                value={levelValue}
-                onValueChange={setLevelValue}
+                defaultValue={33}
                 min={1}
                 max={99}
               />
@@ -380,11 +328,7 @@ export function App() {
           <div>
             <h4 className="mb-2 text-primary">Slider</h4>
             <div className="w-[200px]">
-              <Slider
-                label="Volume"
-                value={sliderValue}
-                onValueChange={setSliderValue}
-              />
+              <Slider label="Volume" defaultValue={50} />
             </div>
           </div>
           <div className="flex-1">
@@ -400,7 +344,6 @@ export function App() {
 
       <Strip />
 
-      {/* 11. Combobox (single) + Combobox (multiselect with groups) */}
       <section className="py-2">
         <div className="flex flex-col sm:flex-row gap-8 items-start">
           <div>
@@ -410,8 +353,6 @@ export function App() {
                 label="Weapon"
                 placeholder="Search weapons..."
                 options={weaponOptions}
-                value={comboValue}
-                onValueChange={setComboValue}
               />
             </div>
           </div>
@@ -422,8 +363,6 @@ export function App() {
               placeholder="Search weapons..."
               groups={weaponGroups}
               selectionMode="multiple"
-              value={multiComboValue}
-              onValueChange={setMultiComboValue}
             />
           </div>
         </div>
@@ -431,7 +370,6 @@ export function App() {
 
       <Strip />
 
-      {/* 12. Text effects */}
       <section className="py-2">
         <div className="flex flex-col sm:flex-row gap-8 items-start">
           <div>
@@ -457,7 +395,6 @@ export function App() {
 
       <Strip />
 
-      {/* 13. Decorative primitives */}
       <section className="py-2">
         <div className="flex flex-col sm:flex-row gap-8 items-start">
           <div>
@@ -484,27 +421,28 @@ export function App() {
 
       <Strip />
 
-      {/* 14. Dialog + Context Menu triggers */}
       <section className="py-2">
-        <div className="flex flex-col max-w-[300px] gap-[2px]">
-          <Button onClick={() => setDialogOpen(true)}>Open Dialog</Button>
+        <div className="flex flex-col max-w-[300px] gap-4">
+          <Dialog
+            title="RESULT"
+            trigger={<Button>Open Dialog</Button>}
+          >
+            <p>- Total Stages Cleared -</p>
+            <p className="text-alert mt-2">NEW RECORD &nbsp; 0 &rarr; 14</p>
+          </Dialog>
           <ContextMenu
             items={contextItems}
             onSelect={(v) => console.log("Selected:", v)}
           >
-            <Button>Right-click for Context Menu</Button>
+            <div className="border-2 border-muted h-[72px] flex items-center justify-center font-yorha text-sm text-primary tracking-[1px] cursor-context-menu select-none">
+              Right click here
+            </div>
           </ContextMenu>
         </div>
       </section>
 
-      <Dialog title="RESULT" open={dialogOpen} onOpenChange={setDialogOpen}>
-        <p>- Total Stages Cleared -</p>
-        <p className="text-alert mt-2">NEW RECORD &nbsp; 0 &rarr; 14</p>
-      </Dialog>
-
       <Strip />
 
-      {/* 15. Badge */}
       <section className="py-2">
         <h4 className="mb-2 text-primary">Badge</h4>
         <div className="flex flex-row gap-3 items-center">
@@ -519,7 +457,6 @@ export function App() {
 
       <Strip />
 
-      {/* 16. Tooltip */}
       <section className="py-2">
         <h4 className="mb-2 text-primary">Tooltip</h4>
         <div className="flex flex-row flex-wrap gap-6 items-center">
@@ -540,7 +477,23 @@ export function App() {
 
       <Strip />
 
-      {/* 17. Card */}
+      <section className="py-2">
+        <h4 className="mb-2 text-primary">Popover</h4>
+        <div className="flex flex-row flex-wrap gap-6 items-center">
+          <Popover
+            trigger={<Button>Edit Unit Data</Button>}
+            title="UNIT DATA"
+          >
+            <div className="flex flex-col gap-2 min-w-[200px]">
+              <Input placeholder="Designation..." />
+              <Input placeholder="Serial number..." />
+            </div>
+          </Popover>
+        </div>
+      </section>
+
+      <Strip />
+
       <section className="py-2">
         <h4 className="mb-2 text-primary">Card</h4>
         <div className="flex flex-col sm:flex-row gap-4 [&>*]:flex-1">
@@ -561,7 +514,6 @@ export function App() {
 
       <Strip />
 
-      {/* 17. Dropdown Menu */}
       <section className="py-2">
         <h4 className="mb-2 text-primary">Dropdown Menu</h4>
         <div className="w-[200px]">
@@ -575,7 +527,6 @@ export function App() {
 
       <Strip />
 
-      {/* 18. Table */}
       <section className="py-2">
         <h4 className="mb-2 text-primary">Table</h4>
         <div className="max-w-[400px]">
@@ -585,17 +536,11 @@ export function App() {
 
       <Strip />
 
-      {/* 19. Textarea */}
       <section className="py-2">
         <h4 className="mb-2 text-primary">Textarea</h4>
         <div className="flex flex-col sm:flex-row gap-4 items-start">
           <div className="w-full sm:w-[300px]">
-            <Textarea
-              placeholder="Enter mission notes..."
-              value={textareaValue}
-              onValueChange={setTextareaValue}
-              rows={4}
-            />
+            <Textarea placeholder="Enter mission notes..." rows={4} />
           </div>
           <div className="w-full sm:w-[300px]">
             <Textarea placeholder="Read-only log output" disabled rows={4} />
@@ -605,7 +550,6 @@ export function App() {
 
       <Strip />
 
-      {/* 20. Colors */}
       <section className="py-2">
         <h4 className="mb-2 text-primary">Colors</h4>
         <div className="flex flex-row flex-wrap gap-4">
@@ -682,7 +626,6 @@ export function App() {
 
       <Strip />
 
-      {/* 21. Footer */}
       <Footer text="Glory To Mankind" />
     </div>
   );

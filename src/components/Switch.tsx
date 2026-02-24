@@ -3,6 +3,7 @@ import { cn } from './utils';
 
 interface SwitchProps {
   checked?: boolean;
+  defaultChecked?: boolean;
   onCheckedChange?: (checked: boolean) => void;
   disabled?: boolean;
   label?: string;
@@ -10,6 +11,7 @@ interface SwitchProps {
 
 export function Switch({
   checked,
+  defaultChecked,
   onCheckedChange,
   disabled = false,
   label,
@@ -23,6 +25,7 @@ export function Switch({
     >
       <BaseSwitch.Root
         checked={checked}
+        defaultChecked={defaultChecked}
         onCheckedChange={onCheckedChange}
         disabled={disabled}
         className="yorha-switch"

@@ -7,6 +7,7 @@ interface DialogProps {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   children?: ReactNode;
+  trigger?: ReactNode;
 }
 
 export function Dialog({
@@ -14,9 +15,15 @@ export function Dialog({
   open,
   onOpenChange,
   children,
+  trigger,
 }: DialogProps) {
   return (
     <BaseDialog.Root open={open} onOpenChange={onOpenChange}>
+      {trigger && (
+        <BaseDialog.Trigger render={<span className="inline-flex" />}>
+          {trigger}
+        </BaseDialog.Trigger>
+      )}
       <BaseDialog.Portal>
         <BaseDialog.Backdrop className="fixed inset-0 bg-black/30 z-[100]" />
         <BaseDialog.Popup className="fixed inset-0 z-[101] flex items-center justify-center">

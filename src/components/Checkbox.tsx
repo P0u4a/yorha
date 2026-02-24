@@ -2,6 +2,7 @@ import { Checkbox as BaseCheckbox } from "@base-ui/react/checkbox";
 
 interface CheckboxProps {
   checked?: boolean;
+  defaultChecked?: boolean;
   onCheckedChange?: (checked: boolean) => void;
   disabled?: boolean;
   label?: string;
@@ -9,6 +10,7 @@ interface CheckboxProps {
 
 export function Checkbox({
   checked,
+  defaultChecked,
   onCheckedChange,
   disabled = false,
   label,
@@ -17,6 +19,7 @@ export function Checkbox({
     <label className="flex items-center gap-2 cursor-pointer font-yorha text-sm text-primary">
       <BaseCheckbox.Root
         checked={checked}
+        defaultChecked={defaultChecked}
         onCheckedChange={(val) => onCheckedChange?.(val)}
         disabled={disabled}
         className="inline-flex items-center justify-center w-[20px] h-[20px] border-2 border-primary bg-transparent transition-colors"
